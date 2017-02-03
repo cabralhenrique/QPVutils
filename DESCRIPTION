@@ -1,0 +1,13 @@
+Package: myR
+Type: Package
+Title: Set of useful packages
+Version: 0.1.0
+Author: Henrique Cabral <henrique.cabral@keyrus.com>
+Maintainer: Henrique Cabral <henrique.cabral@keyrus.com>
+Description: More about what it does (maybe more than one line)
+License: none
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Imports: RColorBrewer, ggplot2, ROracle, data.table, DBI, knitr, yaml
+NeedsCompilation: no
+Packaged: 2017-01-23 08:51:10 UTC; CabHe001
