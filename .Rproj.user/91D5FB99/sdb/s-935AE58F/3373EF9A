@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "username: 'CABRALH'\npassword: 'ujh87gtrf5'\n\n\n# username: 'CABRALH'\n# password: 'jhyTnjs'\n",
+    "created" : 1485956719553.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3199828816",
+    "id" : "3373EF9A",
+    "lastKnownWriteTime" : 1486032159,
+    "last_content_update" : 1486032159721,
+    "path" : "~/.access_db.yaml",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

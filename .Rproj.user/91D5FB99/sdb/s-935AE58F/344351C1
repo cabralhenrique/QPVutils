@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' This function sets the default settings for ggplots\n#'\n#' @param boost integer. value by which to increase or decrease font size. Default = 0\n#' @param ... other params to be passed to theme()\n#' @return settings to be added to a ggplot plot\n#' @examples\n#'  ggplotSetTheme()\n#'  ggplotSetTheme(axis.text.x = element_text(angle = 45, hjust = 1))\n#' @author Henrique Cabral\n#' @export\nggplotSetTheme <- function(boost = 0,...) {\n\n    ggplot2:: theme_minimal() +\n        ggplot2::theme(\n            legend.key = ggplot2::element_blank(),\n            legend.text = ggplot2::element_text(size = 14 + boost),\n            legend.title = ggplot2::element_text(size = 16 + boost),\n            axis.text = ggplot2::element_text(size = 18 + boost),\n            axis.title = ggplot2::element_text(size = 20 + boost),\n            strip.text = ggplot2::element_text(size = 24 + boost),\n            plot.title = ggplot2::element_text(size = 24 + boost),\n            ...\n        )\n}\n\n#' this function sets the default colours for fill gradient plots\n#'\n#' @param return_cols logical. if TRUE, return only colours, not scale_fill_gradient2 object. Default is FALSE\n#' @param ... other parameters passed on to scale_fill_gradient2\n#' @return scale_fill_gradient2 object with standard colours (red-green)\n#' @examples\n#'  fillGradientPlot()\n#'  fillGradientPlot(name='TITLE')\n#' @author Henrique Cabral\n#' @export\nfillGradientPlot <- function(return_cols = F, ...) {\n\n\n    # get colours for scale (colorblind friendly)\n    cols <- RColorBrewer::brewer.pal(11, 'RdYlBu')[c(1, 6, 11)]\n\n    if (return_cols) {\n        return(cols)\n    } else {\n        # add scale to plot\n        return(\n            ggplot2::scale_fill_gradient2(\n                low = cols[1], mid = cols[2], high = cols[3], ...\n        ))\n    }\n\n\n}\n\n",
+    "created" : 1480603629040.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3726877401",
+    "id" : "344351C1",
+    "lastKnownWriteTime" : 1485957749,
+    "last_content_update" : 1485957749520,
+    "path" : "~/R/myR/R/ggplotSettings.R",
+    "project_path" : "R/ggplotSettings.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
