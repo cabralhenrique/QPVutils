@@ -56,7 +56,7 @@ getQuery <- function(query_string,
         } else if (file.exists(paste0(Sys.getenv("HOME"),'/.tnsnames.ora'))) {
             ora_file <- paste0(Sys.getenv("HOME"),'/.tnsnames.ora')
         } else {
-            error('Please provide an tnsnames.ora file location')
+            stop('Please provide an tnsnames.ora file location')
         }
     }
 
@@ -65,7 +65,7 @@ getQuery <- function(query_string,
         if (file.exists(paste0(Sys.getenv("HOME"),'/.access_db.yaml'))) {
             access_file <- paste0(Sys.getenv("HOME"),'/.access_db.yaml')
         } else {
-            error('Please provide an .access_db.yaml file location')
+            stop('Please provide an .access_db.yaml file location')
         }
     }
 
