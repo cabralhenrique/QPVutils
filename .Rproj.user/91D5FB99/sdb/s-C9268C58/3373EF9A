@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "EDWPPRD:\n    username: 'cabralh'\n    password: 'haj74837'\n# to connect to server: H9Hg2sPWMj\n\nEDWPDEV:\n    username: 'cabralh'\n    password: 'ujh87gtrf5'\n\n\n# username: 'CABRALH'\n# password: 'jhyTnjs'\n\n\n\nEDWPUAT:\n    username: 'cabralh'\n    password: 'H7ju86756'\n\n",
+    "created" : 1485956719553.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1097320085",
+    "id" : "3373EF9A",
+    "lastKnownWriteTime" : 1487234232,
+    "last_content_update" : 1487234232600,
+    "path" : "~/.access_db.yaml",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

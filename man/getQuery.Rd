@@ -5,15 +5,24 @@
 \title{executes a query to an oracle database}
 \usage{
 getQuery(query_string, ora_file = NULL, access_file = NULL,
-  network_alias = "EDWPPRD", sample_table = 3, quiet = FALSE, ...)
+  network_alias = NULL, sample_table = 3, quiet = FALSE, ...)
 }
 \arguments{
 \item{query_string}{character. can be either a sql query, the path to an sql file or the name of a table (the latter one detected by the presence of a single word in the string)}
 
 \item{ora_file}{character. Location to the tnsnames.ora file. If NULL (default), script will look for it in
-"C:\\OracleClient\\tnsnames.ora" or in "~/.tnsnames.ora"}
+     "C:\\OracleClient\\tnsnames.ora" or in "~/.tnsnames.ora"
+different environments should be seperated by a blank line. Ex:
+"ENVIRONMENT = (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = XXX)(PORT = XXX))(CONNECT_DATA =(SERVER = XXX)(SERVICE_NAME = NETWORK_ALIAS)))
 
-\item{access_file}{list or character. Either a list with fields username and password, either a character string indicating the location of the file. If NULL (default) the script will look for the file .access_db.yaml in the home directory}
+ ENVIRONMENT2 = (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = XXX)(PORT = XXX))(CONNECT_DATA =(SERVER = XXX)(SERVICE_NAME = NETWORK_ALIAS2)))"}
+
+\item{access_file}{list or character. Either a list with fields username and password, under an ENVIRONMENT field (ex:
+      list(ENVIRONMENT = list(username = USERNAME, password = PASSWORD))),
+either a character string indicating the location of the file. If NULL (default) the script will look for the file .access_db.yaml in the home directory. A minimal yaml file should contain:
+ENVIRONMENT:
+     username: 'USERNAME'
+     password: 'PASSWORD'}
 
 \item{network_alias}{character. If tnsnames.ora file has more than one connection, which network_alias should it use? Default is EDWPDEV}
 
