@@ -36,14 +36,15 @@ rmNonUTF8 <- function(x) {
 #'
 #' @param x string.
 #' @param replace string. replace non alpha-num characters with it. default = ''
+#' @param exceptions string. exception characters (ex: <.>,<,>,< >). Default = ''
 #' @return character vector
 #' @examples keepAlphaNum('hello.baby')
 #' @author Henrique Cabral
 #' @export
-keepAlphaNum <- function(x, replace = '') {
+keepAlphaNum <- function(x, replace = '', exceptions = '') {
 
-   # keep only alphanumeric charactes
-    x <- gsub('[^[:alnum:]]','',x)
+   # keep only alphanumeric characters
+    x <- gsub(sprintf('[^[:alnum:]%s]',exceptions),replace,x)
 
     # remove unwanted characters (accents, cedila)
     x <- iconv(x, to='ASCII//TRANSLIT')
