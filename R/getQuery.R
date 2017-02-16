@@ -3,7 +3,16 @@
 #' @param query_string character. can be either a sql query, the path to an sql file or the name of a table (the latter one detected by the presence of a single word in the string)
 #' @param ora_file character. Location to the tnsnames.ora file. If NULL (default), script will look for it in
 #'      "C:\\OracleClient\\tnsnames.ora" or in "~/.tnsnames.ora"
-#' @param access_file list or character. Either a list with fields username and password, either a character string indicating the location of the file. If NULL (default) the script will look for the file .access_db.yaml in the home directory
+#' different environments should be seperated by a blank line. Ex:
+#' "ENVIRONMENT = (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = XXX)(PORT = XXX))(CONNECT_DATA =(SERVER = XXX)(SERVICE_NAME = NETWORK_ALIAS)))
+#'
+#'  ENVIRONMENT2 = (DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = XXX)(PORT = XXX))(CONNECT_DATA =(SERVER = XXX)(SERVICE_NAME = NETWORK_ALIAS2)))"
+#' @param access_file list or character. Either a list with fields username and password, under an ENVIRONMENT field (ex:
+#'       list(ENVIRONMENT = list(username = USERNAME, password = PASSWORD))),
+#'either a character string indicating the location of the file. If NULL (default) the script will look for the file .access_db.yaml in the home directory. A minimal yaml file should contain:
+#' ENVIRONMENT:
+#'      username: 'USERNAME'
+#'      password: 'PASSWORD'
 #' @param network_alias character. If tnsnames.ora file has more than one connection, which network_alias should it use? Default is EDWPDEV
 #' @param sample_table integer. Whether to query a sample of a table. Default is 3
 #' @param quiet logical. Be silent? Defauls is FALSE
@@ -19,7 +28,7 @@
 getQuery <- function(query_string,
     ora_file = NULL,
     access_file = NULL,
-    network_alias = 'EDWPPRD',
+    network_alias = NULL,
     sample_table = 3,
     quiet = FALSE,
     ...
@@ -71,13 +80,23 @@ getQuery <- function(query_string,
 
     # load file, if it's a string
     if (is.character(access_file)) {
-        access_file <- yaml::yaml.load_file(access_file)[[network_alias]]
+        access_file <- yaml::yaml.load_file(access_file)
     }
 
-    # validate credentials
+    # validate credentials file
     if (!is.list(access_file)) {
         stop('Please provide a valid credentials file object')
-    } else if (sum(c('username','password') %in% names(access_file)) != 2) {
+    }
+
+    # define network_alias
+    if (is.null(network_alias)) { # use first available one
+        network_alias <- names(access_file)[1]
+    }
+
+    access_file <- access_file[[network_alias]]
+
+    # validade credentials
+    if (sum(c('username','password') %in% names(access_file)) != 2) {
         stop('Credentials file must contain fields <username> and <password>')
     }
 
