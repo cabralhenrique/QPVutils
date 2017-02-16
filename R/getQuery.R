@@ -19,7 +19,7 @@
 getQuery <- function(query_string,
     ora_file = NULL,
     access_file = NULL,
-    network_alias = 'EDWPDEV',
+    network_alias = 'EDWPPRD',
     sample_table = 3,
     quiet = FALSE,
     ...
@@ -71,7 +71,7 @@ getQuery <- function(query_string,
 
     # load file, if it's a string
     if (is.character(access_file)) {
-        access_file <- yaml::yaml.load_file(access_file)
+        access_file <- yaml::yaml.load_file(access_file)[[network_alias]]
     }
 
     # validate credentials
@@ -82,11 +82,16 @@ getQuery <- function(query_string,
     }
 
     # read connection
-    dbname  <- utils::read.delim(ora_file)
-    dbname <- strwrap(paste(dbname[[1]], collapse = ''),1000)
+    dbname <- readLines(ora_file)
+
+    # replace empty items by split character
+    dbname[nchar(dbname) == 0] <- '<SPLIT>'
+
+    # now collapse text
+    dbname <- strwrap(paste(dbname, collapse = ''),1000)
 
     # check if there are more than one connection and split, if so
-    db_split <- strsplit(dbname, ')))')[[1]]
+    db_split <- strsplit(dbname, '<SPLIT>')[[1]]
     if (length(db_split) > 1) {
         id_network_alias <- grep(network_alias,db_split)
         if (!length(id_network_alias)) {
@@ -94,7 +99,14 @@ getQuery <- function(query_string,
         } else if (length(id_network_alias) > 1) {
             stop('Multiple network alias found in tnsnames.ora file')
         } else {
-            dbname <- paste0(db_split[id_network_alias], ')))')
+            dbname <- db_split[id_network_alias]
+
+            # keep only what's in parentesis
+            dbname <- substr(
+                dbname,
+                regexpr('[(]',dbname),
+                max(gregexpr('[)]',dbname)[[1]])
+            )
         }
     }
 
