@@ -5,7 +5,7 @@
 \title{executes a query to an oracle database}
 \usage{
 getQuery(query_string, ora_file = NULL, access_file = NULL,
-  network_alias = "EDWPPROD", sample_table = 3, quiet = FALSE, ...)
+  network_alias = "EDWPPRD", sample_table = 3, quiet = FALSE, ...)
 }
 \arguments{
 \item{query_string}{character. can be either a sql query, the path to an sql file or the name of a table (the latter one detected by the presence of a single word in the string)}
