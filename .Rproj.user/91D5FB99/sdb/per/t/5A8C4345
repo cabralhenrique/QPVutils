@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: myR\nType: Package\nTitle: Set of useful packages\nVersion: 0.1.0\nAuthor: Henrique Cabral <henrique.cabral@keyrus.com>\nMaintainer: Henrique Cabral <henrique.cabral@keyrus.com>\nDescription: More about what it does (maybe more than one line)\nLicense: none\nLazyData: TRUE\nRoxygenNote: 5.0.1\nImports: RColorBrewer, ggplot2, ROracle, data.table, DBI, knitr, yaml\nNeedsCompilation: no\nPackaged: 2017-01-23 08:51:10 UTC; CabHe001\n",
+    "created" : 1486044712262.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4019744483",
+    "id" : "5A8C4345",
+    "lastKnownWriteTime" : 1486044722,
+    "last_content_update" : 1486044722548,
+    "path" : "~/R/myR/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
