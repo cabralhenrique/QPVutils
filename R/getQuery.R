@@ -127,6 +127,8 @@ getQuery <- function(query_string,
                 max(gregexpr('[)]',dbname)[[1]])
             )
         }
+    } else {
+        dbname <- regmatches(dbname,gregexpr('\\(.*\\)',dbname))[[1]]
     }
 
     # set driver
