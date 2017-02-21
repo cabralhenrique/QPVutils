@@ -4,6 +4,6 @@ This package contains a series of helper functions to Query, Process (mainly tex
 
 ## INSTALLATION
 ```{r}
-devtools::install_github('cabralhenrique/QPV_utils')
+devtools::install_github('cabralhenrique/QPVutils')
 ```
 
